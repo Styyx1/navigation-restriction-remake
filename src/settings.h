@@ -37,6 +37,7 @@ namespace Config {
         inline static REX::INI::Bool bypass_map_checks{ "Settings", "bBypassMapCheck", false };
         inline static REX::INI::Bool bypass_compass_checks{ "Settings", "bBypassCompassCheck", false  };
         inline static REX::INI::Bool show_compass_break{ "Settings", "bShowCompassNotif",true };
+        inline static REX::INI::Bool enable_map_damage{ "Settings", "bEnableMapDamage", true };
         inline static REX::INI::F32 damage_ticks_compass{ "Settings", "fDamageTickDuration", 30.0f };
         
         inline static REX::INI::I32 durability_map_normal{ "Settings", "iMapDurability", 20 };

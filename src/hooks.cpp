@@ -31,8 +31,10 @@ namespace Hooks {
 			else {
 				RE::TESObjectMISC* curr_map = GetCurrentMapItem(player);
 				const auto& forms = Config::FormCache::GetSingleton();
-				if (curr_map != forms->map_indestructible && !HasIndestructibleMap(player)) {
+				if (settings->enable_map_damage.GetValue()) {
+					if (curr_map != forms->map_indestructible && !HasIndestructibleMap(player)) {
 					DurabilityTracker::GetSingleton()->DamageItem(curr_map, player, 1);
+					}
 				}
 			}
 		}		
@@ -403,7 +405,9 @@ namespace Hooks {
 			compass_timer.Start();
 
 		if (compass_timer.ElapsedSeconds() >= settings->damage_ticks_compass.GetValue()) {
-			DurabilityTracker::GetSingleton()->DamageItem(forms->compass_new, player, 1);
+			if (settings->enable_compass_damage.GetValue()) {
+				DurabilityTracker::GetSingleton()->DamageItem(forms->compass_new, player, 1);
+			}			
 			compass_timer.Reset();
 		}
 	}
