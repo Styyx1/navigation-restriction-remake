@@ -5,8 +5,8 @@ set_xmakever("2.8.2")
 includes("lib/commonlibsse")
 
 -- set project
-set_project("commonlibsse-template")
-set_version("1.0.0")
+set_project("NavigationRestrictions")
+set_version("3.0.0")
 set_license("GPL-3.0")
 
 -- set defaults
@@ -23,14 +23,21 @@ set_policy("package.requires_lock", true)
 -- set configs
 set_config("skyrim_ae", true)
 
+set_config("commonlib_ini", true)
+set_config("commonlib_json", true)
+set_config("commonlib_toml", true)
+add_extrafiles("release/**.ini")
+add_extrafiles("release/**.json")
+add_extrafiles("release/**.toml")
+
 -- targets
-target("commonlibsse-template")
+target("NavigationRestrictions")
     -- add dependencies to target
     add_deps("commonlibsse")
 
     -- add commonlibsse plugin
     add_rules("commonlibsse.plugin", {
-        name = "commonlibsse-template",
+        name = "NavigationRestrictions",
         author = "styyx",
         description = "SKSE64 plugin template using CommonLibSSE"
     })
@@ -39,6 +46,8 @@ target("commonlibsse-template")
     add_files("src/**.cpp")
     add_headerfiles("src/**.h")
     add_includedirs("src")
+    add_includedirs("extern/glaze/include", { public = true })
+    add_includedirs("extern/ClibUtil/include", { public = true })
     set_pcxxheader("src/pch.h")
 
 after_build(function(target)
